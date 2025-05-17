@@ -2,12 +2,14 @@ import time
 import pandas as pd
 import numpy as np
 
-CITY_DATA = { 'Chicago': 'chicago.csv',
-              'New York': 'new_york_city.csv',
-              'Washington': 'washington.csv' }
+CITY_DATA = {'Chicago': 'chicago.csv',
+             'New York': 'new_york_city.csv',
+             'Washington': 'washington.csv'}
 
 months = ['January', 'February', 'March', 'April', 'May', 'June']
-days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+days = ['Monday', 'Tuesday', 'Wednesday',
+        'Thursday', 'Friday', 'Saturday', 'Sunday']
+
 
 def get_filters():
     """
@@ -23,9 +25,11 @@ def get_filters():
     # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     try:
         while True:
-            city = input('\nWould you like to see data for Chicago, New York, or Washington?\n')
+            city = input(
+                '\nWould you like to see data for Chicago, New York, or Washington?\n')
             if (city.title() != 'Chicago' and city.title() != 'New York' and city.title() != 'Washington'):
-                print('\nInvalid city. Please enter "Chicago" or "New York" or "Washington"!\n')
+                print(
+                    '\nInvalid city. Please enter "Chicago" or "New York" or "Washington"!\n')
             else:
                 break
     except KeyboardInterrupt:
@@ -39,7 +43,8 @@ def get_filters():
         check_loop = True
         messsage = ''
         while check_loop:
-            month = input('\nWhich month you like to filter the data? January, February, March, April, May, or June?\n')
+            month = input(
+                '\nWhich month you like to filter the data? January, February, March, April, May, or June?\n')
             for i in months:
                 if month.title() == i:
                     check_loop = False
@@ -60,7 +65,8 @@ def get_filters():
         check_loop = True
         messsage = ''
         while check_loop:
-            day = input('\nWhich day you like to filter the data? Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday\n')
+            day = input(
+                '\nWhich day you like to filter the data? Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday\n')
             for i in days:
                 if day.title() == i:
                     check_loop = False
@@ -75,6 +81,8 @@ def get_filters():
 
     print('-'*40)
     return city, month, day
+
+# convert month and day to lowercase
 
 
 def load_data(city, month, day):
@@ -148,11 +156,12 @@ def station_stats(df):
     print('The most commonly used start station: {}\n'.format(common_start_station))
 
     # display most commonly used end station
-    common_end_station  = df['End Station'].value_counts().idxmax()
+    common_end_station = df['End Station'].value_counts().idxmax()
     print('The most commonly used end station: {}\n'.format(common_end_station))
 
     # display most frequent combination of start station and end station trip
-    print('The most frequent start station and end station trip: Start Station - {}; End Station - {}\n'.format(common_start_station, common_end_station))
+    print('The most frequent start station and end station trip: Start Station - {}; End Station - {}\n'.format(
+        common_start_station, common_end_station))
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -197,7 +206,8 @@ def user_stats(df):
         birth_year_recent = df['Birth Year'].max()
         birth_year_common = df['Birth Year'].value_counts().idxmax()
 
-        print('\nThe earliest year of birth: {}\n'.format(int(birth_year_earliest)))
+        print('\nThe earliest year of birth: {}\n'.format(
+            int(birth_year_earliest)))
         print('The most recent year of birth: {}\n'.format(int(birth_year_recent)))
         print('The most common year of birth: {}\n'.format(int(birth_year_common)))
 
@@ -211,12 +221,14 @@ def view_raw_data(df):
     """
     row = 0
     while True:
-        raw_data = input("\nWould you like to view individual trip data? Type 'yes' or 'no'.\n")
+        raw_data = input(
+            "\nWould you like to view individual trip data? Type 'yes' or 'no'.\n")
         if raw_data.lower() == 'yes':
             print(df.iloc[row:row+5])
             row += 5
         elif raw_data.lower() == 'no':
             break
+
 
 def main():
     while True:
@@ -236,4 +248,4 @@ def main():
 
 
 if __name__ == "__main__":
-	main()
+    main()
