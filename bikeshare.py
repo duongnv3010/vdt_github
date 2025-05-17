@@ -10,8 +10,11 @@ months = ['January', 'February', 'March', 'April', 'May', 'June']
 days = ['Monday', 'Tuesday', 'Wednesday',
         'Thursday', 'Friday', 'Saturday', 'Sunday']
 
+<<<<<<< HEAD
 # This is a program to explore US bikeshare data.
 
+=======
+>>>>>>> refactoring
 
 def get_filters():
     """
@@ -84,6 +87,8 @@ def get_filters():
     print('-'*40)
     return city, month, day
 
+# convert month and day to lowercase
+
 
 def load_data(city, month, day):
     """
@@ -122,6 +127,8 @@ def load_data(city, month, day):
 
     return df
 
+# Display statistics on the most frequent times of travel
+
 
 def time_stats(df):
     """Displays statistics on the most frequent times of travel."""
@@ -143,6 +150,8 @@ def time_stats(df):
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
+
+# Display statistics on the most popular stations and trip
 
 
 def station_stats(df):
